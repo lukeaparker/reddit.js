@@ -10,12 +10,28 @@
   </head>
   <body>
     <!-- home.handlebars -->
-    <h1>Create A New Post</h1>rs
-    <form action="/posts">
-        <input type="text" name="post">
-        <input type="text" name="post">
-        <button type="submit">Submit</button>
+    <div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <form action="/posts/new" method="post" class="justify-content-center">
+      <legend>New Post</legend>
+      <div class="form-group">
+        <label for="post-title">Title</label>
+        <input type="text" name="title" class="form-control" id="post-title" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <label for="post-url">Url</label>
+        <input type="url" name="url" class="form-control" id="post-url" placeholder="https://www.google.com">
+      </div>
+      <div class="form-group">
+        <label for="post-summary">Summary</label>
+        <textarea name="summary" class="form-control" id="post-summary" placeholder="Title"></textarea>
+      </div>
+      <div class='text-right'>
+        <button type="submit" class="btn btn-primary">Create Post</button>
+      </div>
     </form>
+  </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

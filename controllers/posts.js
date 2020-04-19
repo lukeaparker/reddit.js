@@ -1,25 +1,45 @@
-const Post = require('../models/post');
+const Post = require('../models/post')
 
 module.exports = (app) => {
-
-  // CREATE
+  // create post
   app.post('/posts/new', (req, res) => {
-    // INSTANTIATE INSTANCE OF POST MODEL
-    const post = new Post(req.body);
+    // post model instance 
+    const post = new Post(req.body)
 
-    // SAVE INSTANCE OF POST MODEL TO DB
+    // save instance 
     post.save((err, post) => {
-      // REDIRECT TO THE ROOT
-      return res.redirect(`/`);
+      if (err) {
+        console.log(err.stack)
+      }
+      // redirect 
+      return res.redirect('/')
     })
-  });
-
-  Post.find({})
-  .then(posts => {
-    res.render("posts-index", { posts });
   })
-  .catch(err => {
-    console.log(err.message);
+
+  // index
+  app.get('/', (req, res) => {
+    Post.find({}).lean()
+      .then(posts => {
+        res.render('posts-index', { posts })
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  })
+
+  // post  
+  app.get("/posts/:id", function(req, res) {
+    // LOOK UP THE POST
+    Post.findById(req.params.id)
+      .then(post => {
+        res.render("post-show", { post });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   });
 
-};
+
+
+
+}

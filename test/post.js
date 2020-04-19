@@ -1,4 +1,3 @@
-// test/posts.js
 const app = require('./../server')
 const chai = require('chai')
 const mocha = require('mocha')
@@ -22,7 +21,9 @@ describe('Posts', function () {
   const newPost = {
     title: 'post title',
     url: 'https://www.google.com',
-    summary: 'post summary'
+    summary: 'post summary',
+    subreddit: 'post summary'
+
   }
   it('Should create with valid attributes at POST /posts/new', function (done) {
     // Checks how many posts there are now
@@ -58,5 +59,7 @@ describe('Posts', function () {
       })
   })
 
-
+  after(function () {
+    Post.findOneAndDelete(newPost)
+  })
 })

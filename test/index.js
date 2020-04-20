@@ -1,9 +1,19 @@
-const app = require("./../server");
-const chai = require("chai");
-const chaiHttp = require("chai-http");
-const should = chai.should();
+const app = require('./../server')
+const chai = require('chai')
+const mocha = require('mocha')
+const chaiHttp = require('chai-http')
+const expect = chai.expect
+const describe = mocha.describe
+const it = mocha.it
+const after = mocha.after
 
-chai.use(chaiHttp);
+// Import the Post model from our models folder so we
+// we can use it in our tests.
+const server = require('../server')
+
+chai.should()
+chai.use(chaiHttp)
+
 
 describe("site", function() {
   // Describe what you are testing

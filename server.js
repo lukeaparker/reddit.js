@@ -23,8 +23,12 @@ app.get('/posts/new', (req, res) => res.render('posts-new'))
 
 require('./controllers/posts.js')(app)
 
+require('./controllers/comments.js')(app)
+
 
 // Start Server
 app.listen(3000, () => {
   console.log('Reddit Search listening on port localhost:3000!');
 });
+
+module.exports = app

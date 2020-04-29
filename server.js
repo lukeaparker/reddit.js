@@ -22,6 +22,20 @@ app.use(expressValidator())
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// auth middleware
+let checkAuth = (req, res, next) => {
+  // console.log("Checking authentication");
+  if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+      req.user = null;
+  } else {
+      let token = req.cookies.nToken;
+      let decodedToken = jwt.decode(token, { complete: true } || {});
+      req.user = decodedToken.payload;
+  }
+  next();
+}
+app.use(checkAuth);
+
 // routes
 app.get('/posts/new', (req, res) => res.render('posts-new'))
 

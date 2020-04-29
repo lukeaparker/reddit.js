@@ -16,12 +16,17 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a href="/posts/new" class="btn btn-primary navbar-btn">New Post</a>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/logout">Logout</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/sign-up">Sign Up</a></li>
-    </ul>
+    {{#if currentUser}}
+  <a href="/posts/new" class="btn btn-primary navbar-btn">New Post</a>
+{{/if}}
+<ul class="nav navbar-nav navbar-right">
+  {{#if currentUser}}
+    <li><a href="/logout">Logout</a></li>
+  {{else}}
+    <li><a href="/login">Login</a></li>
+    <li><a href="/sign-up">Sign Up</a></li>
+  {{/if}}
+</ul>
   </div>
 </div>
     </nav>

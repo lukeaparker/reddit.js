@@ -1,7 +1,11 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+app.use(cookieParser()); // Add this after you initialize express.
 
 
 // db
@@ -24,6 +28,9 @@ app.get('/posts/new', (req, res) => res.render('posts-new'))
 require('./controllers/posts.js')(app)
 
 require('./controllers/comments.js')(app)
+
+require('./controllers/auth.js')(app)
+
 
 
 // Start Server
